@@ -81,9 +81,51 @@ export default function SettingsPage() {
       <TopHeader searchPlaceholder="Search settings, profile, security..." />
 
       <div className="flex-1 flex flex-col items-center p-4 md:p-8">
-        <div className="w-full max-w-[480px] mt-4 md:mt-8">
+        <div className="w-full max-w-5xl mt-4 md:mt-8 flex flex-col md:flex-row gap-6 md:gap-8 items-start">
           
-          <div className="bg-white w-full rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col overflow-hidden min-h-[500px] relative">
+          {/* Left Panel: Profile Summary (Persistent) */}
+          <div className="bg-white w-full md:w-[320px] rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col items-center pt-10 pb-8 px-6 shrink-0 sticky top-8">
+            <div className="relative mb-5 group cursor-pointer" onClick={handleImageUploadClick}>
+              <div className="w-[100px] h-[100px] rounded-full bg-[#FFEBF0] text-[#E11D48] flex items-center justify-center font-bold text-3xl shadow-sm ring-[6px] ring-white relative overflow-hidden transition-all group-hover:ring-rose-100">
+                <span>EJ</span>
+                {/* Upload overlay on hover */}
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Camera className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#059669] border-[3px] border-white rounded-full flex items-center justify-center shadow-sm z-10">
+                <ShieldCheck className="w-4 h-4 text-white" />
+              </div>
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                accept="image/png, image/jpeg" 
+              />
+            </div>
+            <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight">{name}</h2>
+            <p className="text-[13px] text-slate-500 font-medium mt-1">Chief Customs Officer</p>
+            <div className="w-full h-px bg-slate-100 my-6"></div>
+            <div className="w-full space-y-3">
+              <button 
+                onClick={() => navigateTo('details', -1)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[13px] font-bold transition-colors ${view === 'details' ? 'bg-[#0F172A] text-white' : 'text-slate-600 hover:bg-slate-50'}`}
+              >
+                <User className="w-4 h-4" />
+                Account Settings
+              </button>
+              <button 
+                onClick={() => navigateTo('otp', 1)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-[13px] font-bold transition-colors ${view !== 'details' ? 'bg-[#0F172A] text-white' : 'text-slate-600 hover:bg-slate-50'}`}
+              >
+                <ShieldCheck className="w-4 h-4" />
+                Security & Password
+              </button>
+            </div>
+          </div>
+
+          {/* Right Panel: Dynamic Content */}
+          <div className="bg-white flex-1 w-full rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col overflow-hidden min-h-[540px] relative">
             <AnimatePresence mode="wait" custom={direction}>
               {view === 'details' && (
                 <motion.div
@@ -94,90 +136,66 @@ export default function SettingsPage() {
                   animate="center"
                   exit="exit"
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  className="flex flex-col h-full"
+                  className="flex flex-col h-full absolute inset-0"
                 >
-                  {/* Header Profile Section */}
-                  <div className="relative pt-8 pb-6 px-6 bg-white flex flex-col items-center rounded-t-[32px] z-20 shrink-0">
-                    <div className="relative mb-4 group cursor-pointer" onClick={handleImageUploadClick}>
-                      <div className="w-[88px] h-[88px] rounded-full bg-[#FFEBF0] text-[#E11D48] flex items-center justify-center font-bold text-3xl shadow-sm ring-[6px] ring-white relative overflow-hidden transition-all group-hover:ring-rose-100">
-                        <span>EJ</span>
-                        {/* Upload overlay on hover */}
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Camera className="w-6 h-6 text-white" />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#059669] border-[3px] border-white rounded-full flex items-center justify-center shadow-sm z-10">
-                        <ShieldCheck className="w-4 h-4 text-white" />
-                      </div>
-                      <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        className="hidden" 
-                        accept="image/png, image/jpeg" 
-                      />
-                    </div>
-                    <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight">{name}</h2>
-                  </div>
-
-                  <div className="w-full h-px bg-slate-100 relative z-20 shrink-0"></div>
-
-                  {/* Form Body */}
-                  <div className="px-6 py-6 bg-white flex-1 relative z-20">
-                    <form id="profile-form" onSubmit={handleSave} className="space-y-8">
+                  <div className="px-8 py-8 bg-white flex-1 overflow-y-auto custom-scrollbar">
+                    <form id="profile-form" onSubmit={handleSave} className="space-y-10 max-w-xl">
                       {/* Account Information Section */}
-                      <div className="space-y-4">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                      <div className="space-y-6">
+                        <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2 border-b border-slate-100 pb-4">
                           <User className="w-4 h-4" /> ACCOUNT INFORMATION
                         </h3>
-                        <div className="space-y-4">
+                        <div className="space-y-5">
                           <div>
-                            <label className="block text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-1.5">Full Name</label>
+                            <label className="block text-[12px] font-bold text-[#475569] uppercase tracking-wider mb-2">Full Name</label>
                             <input
                               type="text"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
-                              className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all"
+                              className="w-full bg-white border border-slate-200 rounded-2xl px-5 py-3.5 text-[15px] font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all"
                               required
                             />
                           </div>
-                          <div>
-                            <label className="block text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-1.5">Email Address</label>
-                            <input
-                              type="email"
-                              value="emily.jordan@aerologix.com"
-                              readOnly
-                              className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-[15px] font-medium text-slate-500 focus:outline-none"
-                            />
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                              <label className="block text-[12px] font-bold text-[#475569] uppercase tracking-wider mb-2">Email Address</label>
+                              <input
+                                type="email"
+                                value="emily.jordan@aerologix.com"
+                                readOnly
+                                className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5 text-[15px] font-medium text-slate-500 focus:outline-none cursor-not-allowed"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-[12px] font-bold text-[#475569] uppercase tracking-wider mb-2">Phone Number</label>
+                              <input
+                                type="text"
+                                value="+1 (555) 019-2834"
+                                readOnly
+                                className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3.5 text-[15px] font-medium text-slate-500 focus:outline-none cursor-not-allowed"
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <label className="block text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-1.5">Phone Number</label>
-                            <input
-                              type="text"
-                              value="+1 (555) 019-2834"
-                              readOnly
-                              className="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-[15px] font-medium text-slate-500 focus:outline-none"
-                            />
-                          </div>
-                          <p className="text-[11px] text-slate-400 font-medium px-1 pt-2">Email and phone number cannot be changed.</p>
+                          <p className="text-[12px] text-slate-400 font-medium px-1">Email and phone number are managed by IT and cannot be changed.</p>
                         </div>
                       </div>
 
                       {/* Security Section */}
-                      <div className="space-y-4">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                      <div className="space-y-6">
+                        <h3 className="text-[12px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2 border-b border-slate-100 pb-4">
                           <ShieldCheck className="w-4 h-4" /> SECURITY
                         </h3>
-                        <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+                        <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
                           <div>
-                            <p className="text-sm font-bold text-slate-900">Password</p>
-                            <p className="text-[11px] text-slate-500 mt-0.5">Last changed 90 days ago</p>
+                            <p className="text-[15px] font-bold text-slate-900">Password Authentication</p>
+                            <p className="text-[13px] text-slate-500 mt-1">Last changed 90 days ago. Requires 2FA verification.</p>
                           </div>
                           <button
                             type="button"
                             onClick={() => navigateTo('otp', 1)}
-                            className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-[12px] font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
+                            className="px-6 py-2.5 bg-white border border-slate-200 rounded-[14px] text-[13px] font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm shrink-0"
                           >
-                            Reset
+                            Reset Password
                           </button>
                         </div>
                       </div>
@@ -185,11 +203,11 @@ export default function SettingsPage() {
                   </div>
                   
                   {/* Footer */}
-                  <div className="px-6 py-5 bg-white flex justify-end items-center gap-4 shrink-0 rounded-b-[32px] relative z-20 border-t border-slate-50">
+                  <div className="px-8 py-5 bg-white flex justify-end items-center gap-4 shrink-0 border-t border-slate-100 relative z-20">
                     <button 
                       type="submit"
                       form="profile-form"
-                      className="w-full bg-[#E11D48] hover:bg-rose-700 text-white rounded-[16px] px-8 py-3.5 text-[14px] font-bold shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                      className="bg-[#E11D48] hover:bg-rose-700 text-white rounded-[16px] px-8 py-3.5 text-[14px] font-bold shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
                     >
                       Save Changes
                     </button>
@@ -206,26 +224,26 @@ export default function SettingsPage() {
                   animate="center"
                   exit="exit"
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  className="flex flex-col h-full bg-white p-8 absolute inset-0"
+                  className="flex flex-col h-full bg-white p-10 absolute inset-0"
                 >
                   <button 
                     onClick={() => navigateTo('details', -1)}
-                    className="absolute top-6 left-6 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-[100]"
+                    className="absolute top-8 left-8 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-[100]"
                   >
-                    <ArrowLeft className="w-5 h-5" />
+                    <ArrowLeft className="w-6 h-6" />
                   </button>
                   
-                  <div className="pt-8 flex flex-col items-center justify-center h-full">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-[#0F172A] shadow-sm mb-6">
-                      <KeyRound className="w-6 h-6 stroke-[2.2]" />
+                  <div className="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full">
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-[#0F172A] shadow-sm mb-6">
+                      <KeyRound className="w-8 h-8 stroke-[2.2]" />
                     </div>
                     
-                    <h2 className="text-xl font-bold text-[#0F172A] tracking-tight mb-2 text-center">Identity Verification</h2>
-                    <p className="text-xs text-slate-500 mb-8 text-center px-4">
-                      Enter the 6-digit authentication token sent to your device to authorize a password reset.
+                    <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight mb-3 text-center">Identity Verification</h2>
+                    <p className="text-[14px] text-slate-500 mb-10 text-center leading-relaxed">
+                      Enter the 6-digit authentication token sent to your device to authorize a secure password reset.
                     </p>
 
-                    <div className="flex justify-center gap-2 mb-8">
+                    <div className="flex justify-center gap-3 mb-10 w-full">
                       {otp.map((digit, index) => (
                         <input
                           key={index}
@@ -235,7 +253,7 @@ export default function SettingsPage() {
                           value={digit}
                           onChange={(e) => handleOtpChange(index, e.target.value)}
                           onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                          className="w-10 h-12 text-center text-lg font-mono font-bold bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#0F172A] outline-none text-[#0F172A] transition-all"
+                          className="w-12 h-14 text-center text-xl font-mono font-bold bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#0F172A] outline-none text-[#0F172A] transition-all"
                         />
                       ))}
                     </div>
@@ -243,9 +261,9 @@ export default function SettingsPage() {
                     <button 
                       onClick={verifyOtp}
                       disabled={otp.join('').length !== 6}
-                      className="w-full py-3.5 px-4 rounded-[16px] font-bold text-[14px] bg-[#0F172A] hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white shadow-sm transition-all flex items-center justify-center gap-2 mt-auto mb-4"
+                      className="w-full py-4 px-6 rounded-[16px] font-bold text-[15px] bg-[#0F172A] hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-white shadow-sm transition-all flex items-center justify-center gap-2"
                     >
-                      Verify & Continue <ArrowRight className="w-4 h-4" />
+                      Verify & Continue <ArrowRight className="w-5 h-5" />
                     </button>
                   </div>
                 </motion.div>
@@ -260,46 +278,47 @@ export default function SettingsPage() {
                   animate="center"
                   exit="exit"
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  className="flex flex-col h-full bg-white p-8 absolute inset-0"
+                  className="flex flex-col h-full bg-white p-10 absolute inset-0"
                 >
                   <button 
                     onClick={() => navigateTo('otp', -1)}
-                    className="absolute top-6 left-6 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-[100]"
+                    className="absolute top-8 left-8 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-[100]"
                   >
-                    <ArrowLeft className="w-5 h-5" />
+                    <ArrowLeft className="w-6 h-6" />
                   </button>
                   
-                  <div className="pt-8 flex flex-col h-full">
-                    <div className="mb-8">
-                      <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-[#0F172A] shadow-sm mb-4">
-                        <Lock className="w-5 h-5 stroke-[2.2]" />
-                      </div>
-                      <h2 className="text-xl font-bold text-[#0F172A] tracking-tight mb-2">Create New Password</h2>
-                      <p className="text-xs text-slate-500">Your new password must be at least 12 characters and comply with SOC2 requirements.</p>
+                  <div className="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full">
+                    <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-[#0F172A] shadow-sm mb-6">
+                      <Lock className="w-8 h-8 stroke-[2.2]" />
                     </div>
+                    
+                    <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight mb-3 text-center">Create New Password</h2>
+                    <p className="text-[14px] text-slate-500 mb-10 text-center leading-relaxed">
+                      Your new password must be at least 12 characters and comply with enterprise SOC2 requirements.
+                    </p>
 
-                    <div className="space-y-4 mb-8">
+                    <div className="space-y-5 mb-10 w-full">
                       <div>
-                        <label className="block text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-1.5">New Password</label>
+                        <label className="block text-[12px] font-bold text-[#475569] uppercase tracking-wider mb-2">New Password</label>
                         <input
                           type="password"
                           placeholder="••••••••••••"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F172A]/20 focus:border-[#0F172A] transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 text-[15px] font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F172A]/20 focus:border-[#0F172A] transition-all"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-1.5">Confirm Password</label>
+                        <label className="block text-[12px] font-bold text-[#475569] uppercase tracking-wider mb-2">Confirm Password</label>
                         <input
                           type="password"
                           placeholder="••••••••••••"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F172A]/20 focus:border-[#0F172A] transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 text-[15px] font-medium text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F172A]/20 focus:border-[#0F172A] transition-all"
                         />
                       </div>
                     </div>
 
                     <button 
                       onClick={saveNewPassword}
-                      className="w-full py-3.5 px-4 rounded-[16px] font-bold text-[14px] bg-[#0F172A] hover:bg-slate-800 text-white shadow-sm transition-all flex items-center justify-center gap-2 mt-auto mb-4"
+                      className="w-full py-4 px-6 rounded-[16px] font-bold text-[15px] bg-[#0F172A] hover:bg-slate-800 text-white shadow-sm transition-all flex items-center justify-center gap-2"
                     >
                       Update Password
                     </button>
@@ -316,20 +335,19 @@ export default function SettingsPage() {
                   animate="center"
                   exit="exit"
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  className="flex flex-col h-full bg-white p-8 items-center justify-center text-center absolute inset-0"
+                  className="flex flex-col h-full bg-white p-10 items-center justify-center text-center absolute inset-0"
                 >
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mb-6">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-500" />
+                  <div className="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mb-6 border border-emerald-100 shadow-sm">
+                    <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                   </div>
-                  <h2 className="text-xl font-bold text-[#0F172A] tracking-tight mb-2">Password Updated</h2>
-                  <p className="text-sm text-slate-500 mb-8">
+                  <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight mb-3">Password Updated</h2>
+                  <p className="text-[15px] text-slate-500 mb-8 max-w-sm">
                     Your enterprise credentials have been successfully updated across all gateway nodes.
                   </p>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
-
         </div>
       </div>
     </div>
