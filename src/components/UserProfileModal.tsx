@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, KeyRound, ShieldCheck, Mail, Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, User, KeyRound, ShieldCheck, Mail, Phone, ArrowRight, CheckCircle2, Camera } from 'lucide-react';
 
 interface UserProfileModalProps {
   isOpen: boolean;
@@ -13,6 +13,11 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
   const [name, setName] = useState('Emily Jordan');
   const [passwordFlow, setPasswordFlow] = useState<PasswordFlow>('idle');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUploadClick = () => {
+    fileInputRef.current?.click();
+  };
 
   // Reset flow state when closed
   useEffect(() => {
@@ -66,16 +71,19 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
             className="fixed inset-0 z-[9998] bg-transparent"
           />
           
-          {/* Popover anchored to bottom left */}
+          {/* Popover anchored to bottom left with pointer */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: -20, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, x: -20, y: 0 }}
             animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, x: -20, y: 20 }}
+            exit={{ opacity: 0, scale: 0.95, x: -20, y: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed z-[9999] bottom-6 left-6 md:left-[300px] bg-white w-[calc(100%-48px)] md:w-[440px] rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden pointer-events-auto border border-slate-100 flex flex-col max-h-[85vh]"
+            className="fixed z-[9999] bottom-6 left-6 md:left-[300px] bg-white w-[calc(100%-48px)] md:w-[440px] rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] pointer-events-auto border border-slate-100 flex flex-col max-h-[85vh] origin-bottom-left"
           >
+            {/* Left pointing arrow for desktop */}
+            <div className="hidden md:block absolute -left-[9px] bottom-[30px] w-5 h-5 bg-white border-l border-b border-slate-100 rotate-45 z-10 rounded-sm"></div>
+
             {/* Header Profile Section */}
-            <div className="relative pt-8 pb-6 px-6 bg-white flex flex-col items-center">
+            <div className="relative pt-8 pb-6 px-6 bg-white flex flex-col items-center rounded-t-[32px] overflow-hidden z-20">
               <button
                 onClick={onClose}
                 className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
@@ -83,23 +91,33 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative mb-4">
-                <div className="w-[88px] h-[88px] rounded-full bg-[#FFEBF0] text-[#E11D48] flex items-center justify-center font-bold text-3xl shadow-sm ring-[6px] ring-white">
-                  EJ
+              <div className="relative mb-4 group cursor-pointer" onClick={handleImageUploadClick}>
+                <div className="w-[88px] h-[88px] rounded-full bg-[#FFEBF0] text-[#E11D48] flex items-center justify-center font-bold text-3xl shadow-sm ring-[6px] ring-white relative overflow-hidden transition-all group-hover:ring-rose-100">
+                  <span>EJ</span>
+                  {/* Upload overlay on hover */}
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Camera className="w-6 h-6 text-white" />
+                  </div>
                 </div>
-                <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#059669] border-[3px] border-white rounded-full flex items-center justify-center shadow-sm">
+                <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#059669] border-[3px] border-white rounded-full flex items-center justify-center shadow-sm z-10">
                   <ShieldCheck className="w-4 h-4 text-white" />
                 </div>
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  className="hidden" 
+                  accept="image/png, image/jpeg" 
+                />
               </div>
 
               <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight">{name}</h2>
               <p className="text-[13px] text-slate-500 font-medium mt-0.5">Chief Customs Officer</p>
             </div>
 
-            <div className="w-full h-px bg-slate-100"></div>
+            <div className="w-full h-px bg-slate-100 relative z-20"></div>
 
             {/* Form Body */}
-            <div className="px-6 py-6 bg-white overflow-y-auto custom-scrollbar flex-1">
+            <div className="px-6 py-6 bg-white overflow-y-auto custom-scrollbar flex-1 relative z-20">
               <form id="profile-form" onSubmit={handleSave} className="space-y-8">
                 
                 {/* Account Information Section */}
@@ -249,18 +267,18 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
             </div>
             
             {/* Footer */}
-            <div className="px-6 py-5 bg-white flex justify-end items-center gap-4 shrink-0 rounded-b-[32px]">
+            <div className="px-6 py-5 bg-white flex justify-end items-center gap-4 shrink-0 rounded-b-[32px] relative z-20">
               <button 
                 type="button"
                 onClick={onClose}
-                className="text-[13px] font-bold text-slate-600 hover:text-slate-900 transition-colors"
+                className="text-[14px] font-bold text-slate-700 hover:text-slate-900 transition-colors"
               >
                 Cancel
               </button>
               <button 
                 type="submit"
                 form="profile-form"
-                className="bg-[#E11D48] hover:bg-rose-700 text-white rounded-[14px] px-8 py-3 text-[13px] font-bold shadow-sm transition-all hover:shadow hover:-translate-y-0.5"
+                className="bg-[#E11D48] hover:bg-rose-700 text-white rounded-[16px] px-8 py-3.5 text-[14px] font-bold shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
               >
                 Save Changes
               </button>
