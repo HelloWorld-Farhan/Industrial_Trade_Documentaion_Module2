@@ -65,22 +65,19 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Transparent overlay for clicking outside */}
+          {/* Overlay and Centered Modal Container */}
           <div 
+            className="fixed inset-0 z-[9998] bg-slate-900/20 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
             onClick={onClose}
-            className="fixed inset-0 z-[9998] bg-transparent"
-          />
-          
-          {/* Popover anchored to bottom left with pointer */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: -20, y: 0 }}
-            animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, x: -20, y: 0 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed z-[9999] bottom-6 left-6 md:left-[300px] bg-white w-[calc(100%-48px)] md:w-[440px] rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] pointer-events-auto border border-slate-100 flex flex-col max-h-[85vh] origin-bottom-left"
           >
-            {/* Left pointing arrow for desktop */}
-            <div className="hidden md:block absolute -left-[9px] bottom-[30px] w-5 h-5 bg-white border-l border-b border-slate-100 rotate-45 z-10 rounded-sm"></div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white w-full max-w-[440px] rounded-[32px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] pointer-events-auto border border-slate-100 flex flex-col max-h-[90vh] origin-center relative"
+            >
 
             {/* Header Profile Section */}
             <div className="relative pt-8 pb-6 px-6 bg-white flex flex-col items-center rounded-t-[32px] overflow-hidden z-20">
@@ -284,6 +281,7 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
               </button>
             </div>
           </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
