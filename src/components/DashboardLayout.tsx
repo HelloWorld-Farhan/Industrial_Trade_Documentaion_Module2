@@ -23,15 +23,12 @@ export default function DashboardLayout() {
   ];
 
   return (
-    <div className="h-[100dvh] bg-white flex flex-col overflow-hidden font-sans antialiased selection:bg-slate-800 selection:text-white">
-      {/* Application Shell */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="flex-1 w-full flex flex-col md:flex-row overflow-hidden relative"
-      >
-        
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="h-[100dvh] w-full bg-white flex flex-col md:flex-row overflow-hidden font-sans antialiased selection:bg-slate-800 selection:text-white relative"
+    >
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-100 bg-white z-20 shrink-0">
           <div className="flex items-center gap-2">
@@ -201,7 +198,6 @@ export default function DashboardLayout() {
             </motion.div>
           </AnimatePresence>
         </main>
-      </motion.div>
-    </div>
+    </motion.div>
   );
 }

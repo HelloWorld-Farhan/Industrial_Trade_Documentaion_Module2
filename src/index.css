@@ -5,7 +5,6 @@
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-canvas: #B5C0CB;
   --color-navy-900: #0F172A;
   --color-navy-800: #1E293B;
   --color-slate-card: #FFFFFF;
@@ -32,7 +31,7 @@ html, body, #root {
 }
 
 body {
-  background-color: var(--color-canvas);
+  background-color: #FFFFFF;
   color: var(--color-navy-900);
   font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,10 +43,7 @@ body {
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
 ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
-/* Light Theme Card Classes */
-.app-frame {
-  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.4);
-}
+
 
 .light-card {
   background: #FFFFFF;
