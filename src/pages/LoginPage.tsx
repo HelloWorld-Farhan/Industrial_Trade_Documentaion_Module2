@@ -49,15 +49,64 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-black flex items-center justify-center p-6 antialiased selection:bg-[#0F172A] selection:text-white">
-      {/* BACKGROUND AMBIENT PARTICLES / GRID */}
+    <div className="h-screen w-full bg-black flex overflow-hidden antialiased selection:bg-[#0F172A] selection:text-white">
+      {/* BACKGROUND AMBIENT PARTICLES / GRID FOR THE RIGHT SIDE */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
-        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-white/40 blur-[150px]"></div>
-        <div className="absolute top-[50%] -right-[15%] w-[700px] h-[700px] rounded-full bg-slate-300/30 blur-[170px]"></div>
-        <div className="absolute -bottom-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-slate-200/40 blur-[140px]"></div>
+        <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] rounded-full bg-white/20 blur-[150px]"></div>
+        <div className="absolute top-[60%] right-[20%] w-[500px] h-[500px] rounded-full bg-slate-300/10 blur-[170px]"></div>
       </div>
       
-      <div className="w-full max-w-xl relative z-10">
+      {/* Left Info Panel */}
+      <div className="hidden lg:flex flex-1 flex-col justify-between p-12 lg:p-16 text-white relative z-10 border-r border-white/10 bg-gradient-to-br from-black to-slate-900">
+        <div>
+          <div className="flex items-center gap-3 mb-16">
+            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-[#0F172A] shadow-md font-bold">
+              <Layers className="w-6 h-6 stroke-[2.5]" />
+            </div>
+            <div>
+              <div className="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                AeroLogix <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/10 text-white font-mono font-bold border border-white/20">AI</span>
+              </div>
+              <p className="text-xs text-slate-400 font-medium tracking-wide">Enterprise Customs & Freight</p>
+            </div>
+          </div>
+
+          <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-6">
+            Automate <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">
+              Global Customs
+            </span>
+          </h1>
+          <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+            AeroLogix AI streamlines cross-border trade documentation, duty calculation, and risk telemetry directly from your ERP.
+          </p>
+        </div>
+
+        <div className="space-y-6 max-w-lg">
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-3 mb-2">
+              <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              <h3 className="font-bold text-white text-sm">Enterprise-Grade Security</h3>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Fully compliant with SOC2 Type II, ISO 27001, and CBP 19 CFR regulations for secure trade data management.
+            </p>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-3 mb-2">
+              <Globe2 className="w-5 h-5 text-sky-400" />
+              <h3 className="font-bold text-white text-sm">Multi-Jurisdiction Gateway</h3>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Seamlessly interact with EU TARIC, US-EAST, and Trans-Pacific customs agencies from a single portal.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Auth Panel */}
+      <div className="flex-1 lg:flex-none lg:w-[600px] xl:w-[700px] flex items-center justify-center p-6 sm:p-12 relative z-10 bg-black/50 backdrop-blur-sm">
+        <div className="w-full max-w-md relative">
         <AnimatePresence mode="wait">
           {step === 'login' && (
             <motion.div
@@ -363,6 +412,7 @@ export default function LoginPage() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );
