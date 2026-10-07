@@ -245,10 +245,11 @@ export default function LoginPage() {
       {/* Auth Panel */}
       <motion.div 
         layout 
-        className="flex-1 lg:flex-none lg:w-[600px] xl:w-[700px] flex items-center justify-center p-6 sm:p-12 relative z-10 bg-black/50 backdrop-blur-sm"
+        className="flex-1 lg:flex-none lg:w-[600px] xl:w-[700px] h-full overflow-y-auto relative z-10 bg-black/50 backdrop-blur-sm"
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="w-full max-w-md relative">
+        <div className="min-h-full flex flex-col p-6 sm:p-12">
+          <div className="w-full max-w-md relative mx-auto my-auto">
           <AnimatePresence mode="wait">
             
             {/* LOGIN FORM */}
