@@ -411,38 +411,7 @@ export default function LoginPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Role / Position</label>
-                      <div className="relative">
-                        <select required className="w-full py-3 pl-3 pr-10 bg-slate-50 hover:bg-slate-100/60 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 focus:outline-none transition-all appearance-none cursor-pointer">
-                          <option value="customs_officer">Chief Customs Officer</option>
-                          <option value="customs_broker">Customs Broker</option>
-                          <option value="freight_forwarder">Freight Forwarder</option>
-                          <option value="compliance_officer">Compliance Officer</option>
-                          <option value="supply_chain_director">Supply Chain Director</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-                          <ArrowRight className="w-4 h-4 rotate-90" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5">Region / Jurisdiction</label>
-                      <div className="relative">
-                        <select required className="w-full py-3 pl-3 pr-10 bg-slate-50 hover:bg-slate-100/60 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 focus:outline-none transition-all appearance-none cursor-pointer">
-                          <option value="us_east_eu">Rotterdam (RTM) & EU TARIC</option>
-                          <option value="us_east">US-EAST / North America</option>
-                          <option value="us_west_asia">US-WEST / Trans-Pacific & APAC</option>
-                          <option value="eu_central">EMEA / EU Union Customs Code (UCC)</option>
-                          <option value="global_all">Global Multi-Jurisdiction Gateway</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-                          <Globe2 className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
 
                   <div>
                     <div className="flex justify-between items-center mb-1.5">
