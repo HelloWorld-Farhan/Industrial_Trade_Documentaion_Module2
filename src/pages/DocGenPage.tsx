@@ -161,27 +161,27 @@ export default function DocGenPage() {
               </p>
               
               <div className="space-y-3">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between hover:border-slate-300 transition cursor-pointer">
-                  <div className="flex items-center gap-3">
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 hover:border-slate-300 transition cursor-pointer">
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
                     <div className="w-9 h-9 shrink-0 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-slate-800 truncate font-mono">Commercial_Invoice_INV-2024.pdf</div>
-                      <div className="text-[10px] text-slate-400 mt-0.5">PDF/A-3 Compliant • $184,500.00</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-bold text-slate-800 truncate font-mono pr-2">Commercial_Invoice_INV-2024.pdf</div>
+                      <div className="text-[10px] text-slate-400 mt-0.5 truncate">PDF/A-3 Compliant • $184,500.00</div>
                     </div>
                   </div>
                   <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 shrink-0">READY</span>
                 </div>
                 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between hover:border-slate-300 transition cursor-pointer">
-                  <div className="flex items-center gap-3">
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 hover:border-slate-300 transition cursor-pointer">
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
                     <div className="w-9 h-9 shrink-0 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shadow-sm">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
                     </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold text-slate-800 truncate font-mono">Consolidated_Packing_List_PL.pdf</div>
-                      <div className="text-[10px] text-slate-400 mt-0.5">6 ISO Pallets • 1,420.50 kg</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-bold text-slate-800 truncate font-mono pr-2">Consolidated_Packing_List_PL.pdf</div>
+                      <div className="text-[10px] text-slate-400 mt-0.5 truncate">6 ISO Pallets • 1,420.50 kg</div>
                     </div>
                   </div>
                   <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 shrink-0">READY</span>
