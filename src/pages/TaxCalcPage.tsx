@@ -1,36 +1,27 @@
 import { useState } from 'react';
-import { Calculator, Download, Check, AlertTriangle, MessageSquare, Loader2, BookOpen } from 'lucide-react';
+import { Calculator, Download, Check, AlertTriangle, MessageSquare, BookOpen } from 'lucide-react';
 import { DataExplorerModal } from '../components/DataExplorerModal';
 import { TariffTableModal } from '../components/TariffTableModal';
+import { TaxRecalculateModal } from '../components/TaxRecalculateModal';
 import { TopHeader } from '../components/TopHeader';
 
 export default function TaxCalcPage() {
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [isTariffModalOpen, setIsTariffModalOpen] = useState(false);
-  const [isCalculating, setIsCalculating] = useState(false);
-
-  const handleRecalculate = () => {
-    setIsCalculating(true);
-    setTimeout(() => setIsCalculating(false), 2000);
-  };
+  const [isRecalculateModalOpen, setIsRecalculateModalOpen] = useState(false);
 
   return (
-    <div className={`flex-1 flex flex-col bg-slate-50/50 relative ${isDataModalOpen || isTariffModalOpen ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+    <div className={`flex-1 flex flex-col bg-slate-50/50 relative ${isDataModalOpen || isTariffModalOpen || isRecalculateModalOpen ? 'overflow-hidden' : 'overflow-y-auto'}`}>
       
       <TopHeader 
         searchPlaceholder="Search tariff codes, HS rules, consignee..."
         actionButton={
           <button 
-            onClick={handleRecalculate}
-            disabled={isCalculating}
-            className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-800 text-white rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-all h-[38px]"
+            onClick={() => setIsRecalculateModalOpen(true)}
+            className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl px-4 py-2 text-xs font-semibold shadow-sm transition-all h-[38px] active:scale-95"
           >
-            {isCalculating ? (
-              <Loader2 className="w-3.5 h-3.5 text-slate-300 animate-spin" />
-            ) : (
-              <Calculator className="w-3.5 h-3.5 text-slate-300" />
-            )}
-            <span>{isCalculating ? 'Recalculating...' : 'Recalculate Duties'}</span>
+            <Calculator className="w-3.5 h-3.5 text-slate-300" />
+            <span>Recalculate AI Taxes</span>
           </button>
         }
       />
@@ -240,6 +231,10 @@ export default function TaxCalcPage() {
       <TariffTableModal
         isOpen={isTariffModalOpen}
         onClose={() => setIsTariffModalOpen(false)}
+      />
+      <TaxRecalculateModal
+        isOpen={isRecalculateModalOpen}
+        onClose={() => setIsRecalculateModalOpen(false)}
       />
     </div>
   );
