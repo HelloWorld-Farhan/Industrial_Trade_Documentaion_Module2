@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-canvas: #B5C0CB;
+  --color-navy-900: #0F172A;
+  --color-navy-800: #1E293B;
+  --color-slate-card: #FFFFFF;
+  --color-slate-subtle: #F8FAFC;
+  --color-slate-border: #E2E8F0;
+  --color-slate-muted: #64748B;
+  --color-slate-dark: #0F172A;
+  
+  --color-status-progress-bg: #E0F2FE;
+  --color-status-progress-text: #0284C7;
+  --color-status-done-bg: #DCFCE7;
+  --color-status-done-text: #16A34A;
+  --color-status-purple-bg: #F3E8FF;
+  --color-status-purple-text: #9333EA;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-navy-900);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* Light Theme Card Classes */
+.app-frame {
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.light-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+}
+
+.light-card-subtle {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+}
+
+.nav-item {
+  transition: all 0.18s ease;
+}
+
+.otp-box:focus {
+  border-color: #0F172A;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(15,23,42,0.08);
+  outline: none;
+}
