@@ -23,13 +23,13 @@ export default function DashboardLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-black p-0 md:p-3 lg:p-6 flex items-center justify-center font-sans antialiased selection:bg-slate-800 selection:text-white">
+    <div className="h-[100dvh] bg-white flex flex-col overflow-hidden font-sans antialiased selection:bg-slate-800 selection:text-white">
       {/* Application Shell */}
       <motion.div 
-        initial={{ opacity: 0, y: 20, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-[100dvh] md:h-auto md:max-w-[1440px] bg-white md:rounded-[28px] md:shadow-2xl md:border border-white/60 flex flex-col md:flex-row overflow-hidden md:min-h-[900px] transition-all relative"
+        className="flex-1 w-full flex flex-col md:flex-row overflow-hidden relative"
       >
         
         {/* Mobile Header */}
@@ -187,7 +187,7 @@ export default function DashboardLayout() {
         </aside>
 
         {/* Main Dashboard Content Area */}
-        <main className="flex-1 flex flex-col min-w-0 bg-white overflow-hidden relative md:rounded-r-[28px]">
+        <main className="flex-1 flex flex-col min-w-0 bg-white overflow-hidden relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
