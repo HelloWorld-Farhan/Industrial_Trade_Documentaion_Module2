@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
-import { ThemeProvider } from './contexts/ThemeContext';
 import LoginPage from './pages/LoginPage';
 import DashboardLayout from './components/DashboardLayout';
 import DocGenPage from './pages/DocGenPage';
@@ -44,10 +43,8 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }

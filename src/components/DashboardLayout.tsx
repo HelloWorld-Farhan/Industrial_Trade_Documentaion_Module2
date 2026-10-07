@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Layers, FileCheck2, Calculator, Activity, ShieldCheck, AlertTriangle, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
+import { Layers, FileCheck2, Calculator, Activity, ShieldCheck, AlertTriangle, LogOut, Menu, X } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
-import { useTheme } from '../contexts/ThemeContext';
 import { UserProfileModal } from './UserProfileModal';
 
 export default function DashboardLayout() {
   const { logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,17 +28,12 @@ export default function DashboardLayout() {
               <span className="text-[8px] bg-slate-100 text-slate-600 px-1 py-0.5 rounded font-mono font-medium">AI</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors">
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
 
         {/* Mobile Overlay */}
@@ -61,22 +54,17 @@ export default function DashboardLayout() {
         `}>
           <div>
             {/* Logo & Brand Header (Desktop) */}
-            <div className="hidden md:flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#0F172A] flex items-center justify-center text-white shadow-sm shrink-0">
-                  <Layers className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1.5 leading-none">
-                    <span className="font-bold text-[15px] tracking-tight text-slate-900">AeroLogix</span>
-                    <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono font-medium">AI</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 font-medium tracking-tight mt-1">Enterprise Customs</p>
-                </div>
+            <div className="hidden md:flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-[#0F172A] flex items-center justify-center text-white shadow-sm shrink-0">
+                <Layers className="w-5 h-5 stroke-[2.2]" />
               </div>
-              <button onClick={toggleTheme} className="w-8 h-8 flex items-center justify-center rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
-                {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              </button>
+              <div>
+                <div className="flex items-center gap-1.5 leading-none">
+                  <span className="font-bold text-[15px] tracking-tight text-slate-900">AeroLogix</span>
+                  <span className="text-[9px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono font-medium">AI</span>
+                </div>
+                <p className="text-[11px] text-slate-400 font-medium tracking-tight mt-1">Enterprise Customs</p>
+              </div>
             </div>
 
             {/* Mobile Sidebar Header */}
