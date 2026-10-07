@@ -26,13 +26,13 @@ export function CargoDatabaseModal({ isOpen, onClose }: CargoDatabaseModalProps)
             onClick={onClose}
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9998] pointer-events-auto"
           />
-          <div className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center p-0 sm:p-4">
+          <div className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="bg-white w-full h-full sm:h-auto max-w-2xl rounded-none sm:rounded-2xl shadow-2xl overflow-hidden pointer-events-auto sm:border border-slate-200 flex flex-col"
+              className="bg-white w-full max-w-2xl max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)] rounded-2xl shadow-2xl overflow-hidden pointer-events-auto border border-slate-200 flex flex-col"
             >
               {/* Header */}
               <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
