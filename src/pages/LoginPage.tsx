@@ -245,11 +245,10 @@ export default function LoginPage() {
       {/* Auth Panel */}
       <motion.div 
         layout 
-        className="flex-1 lg:flex-none lg:w-[600px] xl:w-[700px] h-full overflow-y-auto relative z-10 bg-black/50 backdrop-blur-sm"
+        className="flex-1 lg:flex-none lg:w-[600px] xl:w-[700px] flex items-center justify-center p-0 sm:p-8 relative z-10 bg-white sm:bg-black/50 sm:backdrop-blur-sm overflow-hidden"
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="min-h-full flex flex-col p-6 sm:p-12">
-          <div className="w-full max-w-md relative mx-auto my-auto">
+        <div className="w-full max-w-md relative">
           <AnimatePresence mode="wait">
             
             {/* LOGIN FORM */}
@@ -260,7 +259,7 @@ export default function LoginPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="w-full max-w-md mx-auto p-8 md:p-10 bg-white rounded-3xl border border-slate-200/90 shadow-2xl"
+                className="w-full min-h-screen sm:min-h-0 flex flex-col justify-center max-w-md mx-auto p-6 sm:p-8 md:p-10 bg-white sm:rounded-3xl sm:border border-slate-200/90 sm:shadow-2xl"
               >
                 {/* Brand Header */}
                 <div className="flex items-center justify-center gap-3 mb-7">
@@ -361,9 +360,9 @@ export default function LoginPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="w-full max-w-lg mx-auto p-8 md:p-10 bg-white rounded-3xl border border-slate-200/90 shadow-2xl relative"
+                className="w-full min-h-screen sm:min-h-0 flex flex-col justify-center max-w-lg mx-auto p-6 sm:p-8 bg-white sm:rounded-3xl sm:border border-slate-200/90 sm:shadow-2xl relative"
               >
-                <div className="text-center mb-6 relative">
+                <div className="text-center mb-5 relative">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] font-bold mb-4 shadow-sm">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <span>Secure Portal Registration</span>
@@ -464,7 +463,7 @@ export default function LoginPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="w-full max-w-md mx-auto p-8 md:p-10 bg-white rounded-3xl border border-slate-200/90 shadow-2xl relative"
+                className="w-full min-h-screen sm:min-h-0 flex flex-col justify-center max-w-md mx-auto p-6 sm:p-8 bg-white sm:rounded-3xl sm:border border-slate-200/90 sm:shadow-2xl relative"
               >
                 <button 
                   onClick={() => setStep('login')}
@@ -488,7 +487,7 @@ export default function LoginPage() {
                   </p>
                 </div>
 
-                <div className="flex justify-between gap-2 mb-8">
+                <div className="flex justify-between gap-1 sm:gap-2 mb-8">
                   {otp.map((digit, index) => (
                     <input
                       key={index}
@@ -498,7 +497,7 @@ export default function LoginPage() {
                       value={digit}
                       onChange={(e) => handleOtpChange(index, e.target.value)}
                       onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                      className="otp-box w-12 h-14 text-center text-xl font-mono font-bold bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 outline-none text-[#0F172A] transition-all shadow-inner"
+                      className="otp-box w-10 sm:w-12 h-12 sm:h-14 text-center text-lg sm:text-xl font-mono font-bold bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600/10 outline-none text-[#0F172A] transition-all shadow-inner"
                     />
                   ))}
                 </div>
@@ -529,7 +528,6 @@ export default function LoginPage() {
               </motion.div>
             )}
           </AnimatePresence>
-          </div>
         </div>
       </motion.div>
     </div>
