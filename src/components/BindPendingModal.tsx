@@ -50,13 +50,13 @@ export function BindPendingModal({ isOpen, onClose }: BindPendingModalProps) {
             onClick={onClose}
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9998] pointer-events-auto"
           />
-          <div className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center p-0 sm:p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden pointer-events-auto border border-slate-200 flex flex-col"
+              className="bg-white w-full h-full sm:h-auto max-w-lg rounded-none sm:rounded-2xl shadow-2xl overflow-hidden pointer-events-auto sm:border border-slate-200 flex flex-col"
             >
               {/* Header */}
               <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -78,7 +78,7 @@ export function BindPendingModal({ isOpen, onClose }: BindPendingModalProps) {
               </div>
 
               {/* Body */}
-              <div className="p-6 bg-white space-y-6">
+              <div className="p-6 bg-white space-y-6 flex-1 overflow-y-auto">
                 
                 <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 flex gap-3 text-amber-800">
                   <Zap className="w-5 h-5 shrink-0 text-amber-500" />
