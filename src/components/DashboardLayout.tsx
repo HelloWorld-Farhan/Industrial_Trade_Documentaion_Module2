@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { Layers, FileCheck2, Calculator, Activity, ShieldCheck, AlertTriangle, LogOut, Menu, X } from 'lucide-react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { Layers, FileCheck2, Calculator, Activity, ShieldCheck, AlertTriangle, LogOut, Menu, X, Settings } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
-import { UserProfileModal } from './UserProfileModal';
 
 export default function DashboardLayout() {
   const { logout } = useAuth();
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Close mobile menu when navigating
@@ -130,13 +129,13 @@ export default function DashboardLayout() {
           </div>
 
           {/* User Profile Footer */}
-          <div className="pt-6 border-t border-slate-100 flex items-center justify-between mt-auto">
+          <div className="pt-6 border-t border-slate-100 flex items-center justify-between mt-auto gap-2">
             <button 
               onClick={() => {
-                setIsProfileModalOpen(true);
+                navigate('/dashboard/settings');
                 closeMobileMenu();
               }}
-              className="flex items-center gap-2.5 min-w-0 text-left hover:bg-slate-50 p-2 rounded-xl transition-colors group/profile"
+              className="flex flex-1 items-center gap-2.5 min-w-0 text-left hover:bg-slate-50 p-2 rounded-xl transition-colors group/profile"
             >
               <div className="w-9 h-9 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-rose-50 group-hover/profile:ring-rose-100 transition-all">
                 EJ
@@ -146,14 +145,30 @@ export default function DashboardLayout() {
                 <p className="text-[10px] text-slate-400 font-medium truncate">Chief Customs</p>
               </div>
             </button>
-            <div className="relative group">
-              <button onClick={logout} className="text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg p-2 transition-colors shrink-0">
-                <LogOut className="w-4 h-4" />
-              </button>
-              {/* Logout tooltip tag */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm z-50">
-                Log Out
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-[3px] border-transparent border-b-slate-900"></div>
+            <div className="flex items-center shrink-0">
+              <div className="relative group">
+                <button 
+                  onClick={() => {
+                    navigate('/dashboard/settings');
+                    closeMobileMenu();
+                  }} 
+                  className="text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg p-2 transition-colors"
+                >
+                  <Settings className="w-4 h-4" />
+                </button>
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm z-50">
+                  Settings
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[3px] border-transparent border-t-slate-900"></div>
+                </div>
+              </div>
+              <div className="relative group">
+                <button onClick={logout} className="text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg p-2 transition-colors">
+                  <LogOut className="w-4 h-4" />
+                </button>
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm z-50">
+                  Log Out
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-[3px] border-transparent border-t-slate-900"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -163,11 +178,6 @@ export default function DashboardLayout() {
         <main className="flex-1 flex flex-col min-w-0 bg-white overflow-hidden relative">
           <Outlet />
         </main>
-
-        <UserProfileModal 
-          isOpen={isProfileModalOpen} 
-          onClose={() => setIsProfileModalOpen(false)} 
-        />
       </div>
     </div>
   );

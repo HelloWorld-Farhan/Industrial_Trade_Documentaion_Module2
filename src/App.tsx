@@ -7,6 +7,7 @@ import TaxCalcPage from './pages/TaxCalcPage';
 import ClearancePage from './pages/ClearancePage';
 import InsurancePage from './pages/InsurancePage';
 import CompliancePage from './pages/CompliancePage';
+import SettingsPage from './pages/SettingsPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -35,6 +36,7 @@ function AppRoutes() {
         <Route path="clearance" element={<ClearancePage />} />
         <Route path="insurance" element={<InsurancePage />} />
         <Route path="compliance" element={<CompliancePage />} />
+        <Route path="settings" element={<SettingsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
