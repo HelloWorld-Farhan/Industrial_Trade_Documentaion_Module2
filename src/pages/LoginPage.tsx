@@ -90,7 +90,7 @@ export default function LoginPage() {
             </div>
           </motion.div>
 
-          <div className="relative h-[240px]">
+          <motion.div layout className="mb-12">
             <AnimatePresence mode="wait">
               {step === 'login' && (
                 <motion.div
@@ -99,15 +99,14 @@ export default function LoginPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="absolute inset-0"
                 >
-                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-6">
+                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-5">
                     Automate <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">
                       Global Customs
                     </span>
                   </h1>
-                  <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+                  <p className="text-base text-slate-400 leading-relaxed max-w-lg">
                     AeroLogix AI streamlines cross-border trade documentation, duty calculation, and risk telemetry directly from your ERP.
                   </p>
                 </motion.div>
@@ -119,15 +118,14 @@ export default function LoginPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="absolute inset-0"
                 >
-                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-6">
+                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-5">
                     Join the <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-emerald-500">
                       Trade Network
                     </span>
                   </h1>
-                  <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+                  <p className="text-base text-slate-400 leading-relaxed max-w-lg">
                     Register your organization to access automated clearance workflows, real-time tracking, and multi-jurisdiction compliance.
                   </p>
                 </motion.div>
@@ -139,22 +137,20 @@ export default function LoginPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="absolute inset-0"
                 >
-                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-6">
+                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-5">
                     Secure <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-blue-500">
                       Identity Verification
                     </span>
                   </h1>
-                  <p className="text-lg text-slate-400 leading-relaxed max-w-lg">
+                  <p className="text-base text-slate-400 leading-relaxed max-w-lg">
                     Protecting enterprise trade data with military-grade encryption and strict SOC2 access controls.
                   </p>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
-        </div>
+          </motion.div>
 
         <motion.div layout className="space-y-6 max-w-lg relative z-20">
           <AnimatePresence mode="wait">
@@ -165,26 +161,47 @@ export default function LoginPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-6"
+                className="space-y-3"
               >
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                    <h3 className="font-bold text-white text-sm">Enterprise-Grade Security</h3>
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="relative p-5 rounded-[20px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl overflow-hidden group shadow-2xl"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 flex gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-[14px] bg-gradient-to-br from-emerald-400/10 to-emerald-900/30 border border-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(52,211,153,0.1)] group-hover:shadow-[0_0_20px_rgba(52,211,153,0.2)]">
+                      <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm tracking-tight mb-1 group-hover:text-emerald-300 transition-colors">Enterprise-Grade Security</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        Fully compliant with SOC2 Type II, ISO 27001, and CBP 19 CFR regulations for secure trade data management.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Fully compliant with SOC2 Type II, ISO 27001, and CBP 19 CFR regulations for secure trade data management.
-                  </p>
-                </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Globe2 className="w-5 h-5 text-sky-400" />
-                    <h3 className="font-bold text-white text-sm">Multi-Jurisdiction Gateway</h3>
+                </motion.div>
+
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="relative p-5 rounded-[20px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl overflow-hidden group shadow-2xl"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-sky-500/10 blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 flex gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-[14px] bg-gradient-to-br from-sky-400/10 to-sky-900/30 border border-sky-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(56,189,248,0.1)] group-hover:shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+                      <Globe2 className="w-5 h-5 text-sky-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm tracking-tight mb-1 group-hover:text-sky-300 transition-colors">Multi-Jurisdiction Gateway</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        Seamlessly interact with EU TARIC, US-EAST, and Trans-Pacific customs agencies from a single portal.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Seamlessly interact with EU TARIC, US-EAST, and Trans-Pacific customs agencies from a single portal.
-                  </p>
-                </div>
+                </motion.div>
               </motion.div>
             )}
             
@@ -195,26 +212,47 @@ export default function LoginPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-6"
+                className="space-y-3"
               >
-                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-sm hover:bg-emerald-500/20 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Building2 className="w-5 h-5 text-emerald-400" />
-                    <h3 className="font-bold text-white text-sm">Organization Workspaces</h3>
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="relative p-5 rounded-[20px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl overflow-hidden group shadow-2xl"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 flex gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-[14px] bg-gradient-to-br from-emerald-400/10 to-emerald-900/30 border border-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(52,211,153,0.1)] group-hover:shadow-[0_0_20px_rgba(52,211,153,0.2)]">
+                      <Building2 className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm tracking-tight mb-1 group-hover:text-emerald-300 transition-colors">Organization Workspaces</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        Create a dedicated, isolated workspace for your entire logistics team with granular RBAC controls.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-emerald-100/70 leading-relaxed">
-                    Create a dedicated, isolated workspace for your entire logistics team with granular RBAC controls.
-                  </p>
-                </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Layers className="w-5 h-5 text-blue-400" />
-                    <h3 className="font-bold text-white text-sm">Seamless ERP Integration</h3>
+                </motion.div>
+
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="relative p-5 rounded-[20px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl overflow-hidden group shadow-2xl"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-500/10 blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 flex gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-[14px] bg-gradient-to-br from-blue-400/10 to-blue-900/30 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(96,165,250,0.1)] group-hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                      <Layers className="w-5 h-5 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm tracking-tight mb-1 group-hover:text-blue-300 transition-colors">Seamless ERP Integration</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        Connect instantly with SAP, Oracle, and Microsoft Dynamics to sync commercial invoices and packing lists.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Connect instantly with SAP, Oracle, and Microsoft Dynamics to sync commercial invoices and packing lists.
-                  </p>
-                </div>
+                </motion.div>
               </motion.div>
             )}
             
@@ -225,17 +263,27 @@ export default function LoginPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.5 }}
-                className="space-y-6"
+                className="space-y-3"
               >
-                <div className="p-5 rounded-2xl bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm hover:bg-blue-500/20 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <ScanFace className="w-5 h-5 text-blue-400" />
-                    <h3 className="font-bold text-white text-sm">Zero-Trust Authentication</h3>
+                <motion.div 
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="relative p-5 rounded-[20px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl overflow-hidden group shadow-2xl"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 flex gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-[14px] bg-gradient-to-br from-blue-400/10 to-blue-900/30 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(96,165,250,0.1)] group-hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                      <ScanFace className="w-5 h-5 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-sm tracking-tight mb-1 group-hover:text-blue-300 transition-colors">Zero-Trust Authentication</h3>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        Every login attempt requires cryptographically verified tokens to prevent unauthorized access.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-blue-100/70 leading-relaxed">
-                    Every login attempt requires cryptographically verified tokens to prevent unauthorized access.
-                  </p>
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
