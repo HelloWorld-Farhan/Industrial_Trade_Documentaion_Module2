@@ -288,6 +288,7 @@ export default function LoginPage() {
             )}
           </AnimatePresence>
         </motion.div>
+        </div>
       </motion.div>
 
       {/* Auth Panel */}
